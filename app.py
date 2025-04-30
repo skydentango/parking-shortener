@@ -15,14 +15,18 @@ import string
 # Get current time, parse timestamps, time differences
 from datetime import datetime, timedelta
 
+# Creates the Flask application object
 app = Flask(__name__)
+
+# Defines the name of file where data will be stored
 STORAGE_FILE = "storage.json"
 
-# Load saved sessions from storage.json
+# Opens storage.json, read the JSON inside, returns it as Python dictionary
+# If fails, returns blank dictionary
 def load_sessions():
     try:
-        with open(STORAGE_FILE, "r") as f:
-            return json.load(f)
+        with open(STORAGE_FILE, "r") as file:
+            return json.load(file)
     except:
         return {}
 
