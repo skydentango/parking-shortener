@@ -1,7 +1,32 @@
 {
-  "8q3M1C": {
-    "license_plate": "ABC123",
-    "lot_id": "Lot42",
-    "timestamp": "2025-04-30T13:49:16.088628"
+  "jPkOpn": {
+    "license_plate": "XYZ789",
+    "lot_id": "GarageA",
+    "timestamp": "2025-04-30T14:06:14.371854"
+  },
+  "2meJT7": {
+    "license_plate": "MNO456",
+    "lot_id": "Lot17",
+    "timestamp": "2025-04-30T14:06:20.765830"
+  },
+  "PgcS8G": {
+    "license_plate": "JKL321",
+    "lot_id": "Deck2",
+    "timestamp": "2025-04-30T14:06:32.399234"
+  },
+  "Gs10ax": {
+    "license_plate": "QRS654",
+    "lot_id": "Level5",
+    "timestamp": "2025-04-30T14:06:38.728225"
+  },
+  "O5pOqd": {
+    "license_plate": "TUV987",
+    "lot_id": "SouthZone",
+    "timestamp": "2025-04-30T14:06:44.466560"
+  },
+  "MYCAR99": {
+    "license_plate": "ZZZ999",
+    "lot_id": "TopDeck",
+    "timestamp": "2025-04-30T15:21:10.540266"
   }
 }
