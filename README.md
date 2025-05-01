@@ -51,14 +51,14 @@ curl -X POST http://127.0.0.1:5000/session \
   -d '{"license_plate": "XYZ123", "lot_id": "Lot42"}'
 ```
 
-📬 Example response:
+Example response:
 ```json
 { "short_code": "aB7x3Z" }
 ```
 
 ---
 
-### ➕ Create a Session With Custom Short Code
+### Create a Session With Custom Short Code
 
 ```bash
 curl -X POST http://127.0.0.1:5000/session \
@@ -66,7 +66,7 @@ curl -X POST http://127.0.0.1:5000/session \
   -d '{"license_plate": "ZZZ999", "lot_id": "GarageA", "custom_code": "MYCAR99"}'
 ```
 
-📬 Response:
+Response:
 ```json
 { "short_code": "MYCAR99" }
 ```
@@ -79,7 +79,7 @@ curl -X POST http://127.0.0.1:5000/session \
 curl http://127.0.0.1:5000/session/MYCAR99
 ```
 
-📬 Example response:
+Example response:
 ```json
 {
   "license_plate": "ZZZ999",
