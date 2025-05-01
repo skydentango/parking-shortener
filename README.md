@@ -17,13 +17,6 @@ Runs in GitHub Codespacee and uses a local JSON file storage
 
 ---
 
-## 🧰 Technologies Used
-
-- Python 3
-- Flask (minimal web framework)
-- JSON for local storage
-
----
 
 ## 🚀 How to Run (in GitHub Codespaces)
 
