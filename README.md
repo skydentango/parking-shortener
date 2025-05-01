@@ -41,9 +41,9 @@ Running on http://0.0.0.0:5000
 
 ---
 
-## 🧪 How to Test
+## How to Use
 
-### ➕ Create a Session (Random Short Code)
+### Create a Session Using Random Short Code
 
 ```bash
 curl -X POST http://127.0.0.1:5000/session \
@@ -58,7 +58,7 @@ curl -X POST http://127.0.0.1:5000/session \
 
 ---
 
-### ➕ Create a Session (Custom Short Code)
+### ➕ Create a Session With Custom Short Code
 
 ```bash
 curl -X POST http://127.0.0.1:5000/session \
@@ -73,7 +73,7 @@ curl -X POST http://127.0.0.1:5000/session \
 
 ---
 
-### 🔍 Retrieve a Session
+### Retrieve a Session
 
 ```bash
 curl http://127.0.0.1:5000/session/MYCAR99
@@ -90,20 +90,11 @@ curl http://127.0.0.1:5000/session/MYCAR99
 
 ---
 
-### ❌ Try an Expired Session
+### Expired Sessions
 
 If a session is older than 24 hours, it will be deleted and return:
 
 ```json
 { "error": "Session not found" }
 ```
-
----
-
-## 💡 Error Handling
-
-- Missing `license_plate` or `lot_id` → `400 Bad Request`
-- Duplicate custom code → `400 Bad Request`
-- Not found → `404 Not Found`
-- Expired → Session is deleted automatically
 
