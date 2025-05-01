@@ -1,87 +1,118 @@
-# 🚗 Simple Parking Session Shortener (Flask API)
+# Parking Session Shortener API
 
-This project is a lightweight web service that allows users to create and retrieve short codes for parking sessions using a simple REST API.
-
-Built with **Python + Flask**, designed to run inside **GitHub Codespaces**, and stores session data in a local JSON file.
+Python + Flask API that allows users to create and retrieve parking sessions using a short code
+Runs in GitHub Codespacee and uses a local JSON file storage
 
 ---
 
-## ⚙️ Features
+## 📦 Features
 
-- `POST /session`: Create a parking session with a license plate and lot ID
-- `GET /session/<short_code>`: Retrieve a session by its short code
-- Session data is saved in `storage.json`
-- Validates input and handles errors
-- No large frameworks used (Flask only)
+- `POST /session` – Create a new parking session
+- `GET /session/<short_code>` – Retrieve a session by its code
+- Sessions stored in a local JSON file
+- Automatic removal of sessions older than 24 hours
+- Optional **custom short codes**
+- Input validation and error handling
+- Friendly homepage route (`/`) for quick server check
+
+---
+
+## 🧰 Technologies Used
+
+- Python 3
+- Flask (minimal web framework)
+- JSON for local storage
 
 ---
 
 ## 🚀 How to Run (in GitHub Codespaces)
 
-1. **Create your Codespace** from this repository
+1. **Open this repo in a Codespace**
 
-2. **Set up environment** (in the terminal):
+2. In the terminal, set up the environment:
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install flask
 ```
 
-3. **Run the Flask app**:
+3. Start the Flask app:
 
 ```bash
 python app.py
 ```
 
-You’ll see output like:
-
+4. You’ll see:
 ```
 Running on http://0.0.0.0:5000
 ```
 
 ---
 
-## 🧪 How to Test the API
+## 🧪 How to Test
 
-### ✅ POST /session
+### ➕ Create a Session (Random Short Code)
 
 ```bash
 curl -X POST http://127.0.0.1:5000/session \
   -H "Content-Type: application/json" \
-  -d '{"license_plate": "ABC123", "lot_id": "Lot42"}'
+  -d '{"license_plate": "XYZ123", "lot_id": "Lot42"}'
 ```
 
-📬 Response:
-
+📬 Example response:
 ```json
-{
-  "short_code": "abc123"
-}
+{ "short_code": "aB7x3Z" }
 ```
 
 ---
 
-### 🔍 GET /session/<short_code>
+### ➕ Create a Session (Custom Short Code)
 
 ```bash
-curl http://127.0.0.1:5000/session/abc123
+curl -X POST http://127.0.0.1:5000/session \
+  -H "Content-Type: application/json" \
+  -d '{"license_plate": "ZZZ999", "lot_id": "GarageA", "custom_code": "MYCAR99"}'
 ```
 
 📬 Response:
+```json
+{ "short_code": "MYCAR99" }
+```
 
+---
+
+### 🔍 Retrieve a Session
+
+```bash
+curl http://127.0.0.1:5000/session/MYCAR99
+```
+
+📬 Example response:
 ```json
 {
-  "license_plate": "ABC123",
-  "lot_id": "Lot42",
-  "timestamp": "2025-04-30T..."
+  "license_plate": "ZZZ999",
+  "lot_id": "GarageA",
+  "timestamp": "2025-04-30T14:00:00"
 }
 ```
 
 ---
 
-## 🧠 Notes
+### ❌ Try an Expired Session
 
-- All data is stored in a local file: `storage.json`
-- Make sure to activate your virtual environment before running
-- This app is intended for educational/testing purposes — not production use
+If a session is older than 24 hours, it will be deleted and return:
+
+```json
+{ "error": "Session not found" }
+```
+
+---
+
+## 💡 Error Handling
+
+- Missing `license_plate` or `lot_id` → `400 Bad Request`
+- Duplicate custom code → `400 Bad Request`
+- Not found → `404 Not Found`
+- Expired → Session is deleted automatically
+
