@@ -30,12 +30,12 @@ def load_sessions():
     except:
         return {}
 
-# Save updated sessions to storage.json
+# Opens storage.json, converts python dictionary to JSON, writes data into file
 def save_sessions(data):
-    with open(STORAGE_FILE, "w") as f:
-        json.dump(data, f, indent=2)
+    with open(STORAGE_FILE, "w") as file:
+        json.dump(data, file, indent=2)
 
-# Remove sessions older than 24 hours
+# Finds and deletes any sessions that are more than 24 hours old and saves the updated session list
 def remove_expired_sessions(sessions):
     now = datetime.utcnow()
     expired_codes = []
@@ -55,7 +55,10 @@ def remove_expired_sessions(sessions):
 def generate_code(length=6):
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
-# POST /session: create a session
+# Handles POST session
+# Validates the input, generates code, saves session in storage file, returns short code as response 
+# Allows for a custom code if provided
+# Error handling included
 @app.route("/session", methods=["POST"])
 def create_session():
     data = request.get_json()
@@ -69,7 +72,6 @@ def create_session():
     sessions = load_sessions()
     remove_expired_sessions(sessions)
 
-    # Use custom code if provided
     if custom_code:
         if custom_code in sessions:
             return jsonify({"error": "Custom code already in use"}), 400
@@ -89,7 +91,9 @@ def create_session():
 
     return jsonify({"short_code": code})
 
-# GET /session/<short_code>: get session info
+# Handles GET session
+# Retrieves a saved parking session
+# Looks up parking session by short code, deletes expired sessions, returns session if still exists
 @app.route("/session/<code>", methods=["GET"])
 def get_session(code):
     sessions = load_sessions()
@@ -101,11 +105,12 @@ def get_session(code):
 
     return jsonify(session)
 
-# Homepage route
+# Homepage
 @app.route("/")
 def index():
-    return "🚗 Parking Shortener API is running!"
+    return "Parking Shortener API is running!"
 
-# Run server
+# Starts Flask server only when this file is run directly
+# Ensures it is visible to browser inside GitHub Codespaces
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

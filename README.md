@@ -85,9 +85,3 @@ curl http://127.0.0.1:5000/session/abc123
 - All data is stored in a local file: `storage.json`
 - Make sure to activate your virtual environment before running
 - This app is intended for educational/testing purposes — not production use
-
----
-
-## 🏁 Done!
-
-This project satisfies all requirements for the Parking Session Shortener task. ✅
