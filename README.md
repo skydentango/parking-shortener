@@ -11,16 +11,14 @@ Runs in GitHub Codespacee and uses a local JSON file storage
 - `GET /session/<short_code>` – Retrieve a session by its code
 - Sessions stored in a local JSON file
 - Automatic removal of sessions older than 24 hours
-- Optional **custom short codes**
+- Optional custom short codes
 - Input validation and error handling
-- Friendly homepage route (`/`) for quick server check
 
 ---
 
+## How to Run in GitHub Codespaces
 
-## 🚀 How to Run (in GitHub Codespaces)
-
-1. **Open this repo in a Codespace**
+1. Open repo in a Codespace
 
 2. In the terminal, set up the environment:
 
