@@ -5,7 +5,7 @@ Runs in GitHub Codespacee and uses a local JSON file storage
 
 ---
 
-## 📦 Features
+## Functionality
 
 - `POST /session` – Create a new parking session
 - `GET /session/<short_code>` – Retrieve a session by its code
